@@ -138,9 +138,10 @@ let g:ctrlp_custom_ignore = {
 \}
 
 let &l:winheight = &lines / 2
-let g:deoplete#enable_at_startup = 1
 
-let g:ale_completion_enabled = 1
+" Autocomplete - seems to use lot of CPU - check later
+" let g:deoplete#enable_at_startup = 1
+" let g:ale_completion_enabled = 1
 
 set list
 set listchars=tab:▸\ ,eol:¬
@@ -172,5 +173,6 @@ let g:buffergator_viewport_split_policy = 'R'
 " temporary solution before better syntax highlighting will be found for ts
 autocmd BufNewFile,BufRead *.ts set syntax=javascript
 
+" Setting for dbext plugin - used for accessing any database
 let g:dbext_default_profile_psql = 'type=PGSQL:host=localhost:port=5432:dbname=observer:user=observer'
 let g:dbext_default_profile = 'psql'
