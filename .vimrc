@@ -6,7 +6,9 @@ set expandtab
 set backspace=indent,eol,start
 set autoindent
 set copyindent
-set number
+set number relativenumber
+
+
 set shiftwidth=2
 set shiftround
 set showmatch
@@ -28,19 +30,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'scrooloose/nerdtree'
 
-"Plug 'NLKNguyen/papercolor-theme'
-"Plug 'jacoborus/tender.vim'
-"Plug 'felixhummel/setcolors.vim'
-"Plug 'flazz/vim-colorschemes'
-"Plug 'chriskempson/base16-vim'
 Plug 'morhetz/gruvbox'
-"Plug 'kristijanhusak/vim-hybrid-material'
-"Plug 'dracula/vim', { 'as': 'dracula' }
-"Plug 'ayu-theme/ayu-vim'
-"Plug 'crusoexia/vim-monokai'
-"Plug 'mhartington/oceanic-next'
-"Plug 'nanotech/jellybeans.vim'
-"Plug 'dikiaap/minimalist'
 
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -58,7 +48,21 @@ Plug 'bronson/vim-trailing-whitespace'
 Plug 'Shougo/vimproc.vim'
 Plug 'Shougo/unite.vim'
 Plug 'mileszs/ack.vim'
-Plug 'airblade/vim-gitgutter'
+
+Plug 'sickill/vim-pasta'
+
+"Plug 'airblade/vim-gitgutter'
+
+    " signify {{{
+        Plug 'mhinz/vim-signify'
+        let g:signify_vcs_list = [ 'git' ]
+        let g:signify_sign_add               = '+'
+        let g:signify_sign_delete            = '_'
+        let g:signify_sign_delete_first_line = '‾'
+        let g:signify_sign_change = '!'
+    " }}}
+
+
 Plug 'ctrlpvim/ctrlp.vim'
 
 Plug 'tpope/vim-fugitive'
@@ -92,12 +96,39 @@ Plug 'pangloss/vim-javascript'
 "Plug 'mxw/vim-jsx'
 "Plug 'jparise/vim-graphql'
 Plug 'leafgarland/typescript-vim'
-" Plug 'othree/es.next.syntax.vim'
+Plug 'othree/es.next.syntax.vim'
 " Plug 'HerringtonDarkholme/yats'
 Plug 'othree/yajs.vim'
 " Plug 'Quramy/tsuquyomi'
 " Syntax errors
 Plug 'ntpeters/vim-better-whitespace'
+
+
+
+    " JavaScript {{{
+        " Plug 'othree/yajs.vim' ", { 'for': [ 'javascript', 'javascript.jsx', 'html' ] }
+
+        " Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx', 'html'] }
+        " Plug 'moll/vim-node', { 'for': 'javascript' }
+        " Plug 'mxw/vim-jsx' ", { 'for': ['javascript.jsx', 'javascript'] }
+        "Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'], 'do': 'npm install' }
+    " }}}
+
+    " TypeScript {{{
+        " Plug 'HerringtonDarkholme/yats.vim', { 'for': 'typescript' }
+        " Plug 'leafgarland/typescript-vim'
+        " Plug 'Shougo/vimproc.vim', { 'do': 'make' }
+
+        " Plug 'mhartington/nvim-typescript', { 'for': 'typescript', 'do': './install.sh' }
+        " let g:nvim_typescript#diagnosticsEnable = 0
+        " let g:nvim_typescript#max_completion_detail=100
+        " Plug 'Quramy/tsuquyomi', { 'for': 'typescript', 'do': 'npm install' }
+        " let g:tsuquyomi_completion_detail = 1
+        " let g:tsuquyomi_disable_default_mappings = 1
+        " let g:tsuquyomi_completion_detail = 1
+    " }}}
+
+
 
 
 call plug#end()
@@ -143,6 +174,9 @@ let &l:winheight = &lines / 2
 " let g:deoplete#enable_at_startup = 1
 " let g:ale_completion_enabled = 1
 
+" use system clipboard
+set clipboard=unnamedplus
+
 set list
 set listchars=tab:▸\ ,eol:¬
 
@@ -165,6 +199,13 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+
+nnoremap ; :
+
+vmap > >gv
+vmap < <gv
+
+let g:vim_markdown_folding_disabled = 1
 
 nmap <leader>s :VialHttp<cr>
 
