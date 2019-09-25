@@ -1,219 +1,335 @@
-set nocompatible
-set nowrap
-set tabstop=2
-set expandtab
-
-set backspace=indent,eol,start
-set autoindent
-set copyindent
-set number relativenumber
-
-
-set shiftwidth=2
-set shiftround
-set showmatch
-set ignorecase
-set smartcase
-set smarttab
-set hlsearch
-set incsearch
-set mouse=a
-set signcolumn=yes
-set hidden
-" do not add EOF automatically when file is opened (messing with git)
-set nofixendofline
-
-filetype plugin on
-
-set omnifunc=syntaxcomplete#Complete
+"ns {{{
 call plug#begin('~/.vim/plugged')
 
-Plug 'scrooloose/nerdtree'
-
-Plug 'morhetz/gruvbox'
-
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
-
-Plug 'jiangmiao/auto-pairs'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-
-Plug 'bronson/vim-trailing-whitespace'
-Plug 'Shougo/vimproc.vim'
-Plug 'Shougo/unite.vim'
-Plug 'mileszs/ack.vim'
-
-Plug 'sickill/vim-pasta'
-
-"Plug 'airblade/vim-gitgutter'
-
-    " signify {{{
-        Plug 'mhinz/vim-signify'
-        let g:signify_vcs_list = [ 'git' ]
-        let g:signify_sign_add               = '+'
-        let g:signify_sign_delete            = '_'
-        let g:signify_sign_delete_first_line = '‾'
-        let g:signify_sign_change = '!'
-    " }}}
-
-
-Plug 'ctrlpvim/ctrlp.vim'
-
-Plug 'tpope/vim-fugitive'
-
-Plug 'Yggdroot/indentLine'
-
-Plug 'vim-scripts/dbext.vim'
-
-Plug 'w0rp/ale'
-
-Plug 'tpope/vim-commentary'
-
-" Plug 'diepm/vim-rest-console'
-Plug 'baverman/vial'
-Plug 'baverman/vial-http'
-
-" Syntax highlighting
-Plug 'slashmili/alchemist.vim'
+Plug 'NLKNguyen/papercolor-theme'
+"Plug 'SirVer/ultisnips'
+"Plug 'benmills/vimux'
+"Plug 'christoomey/vim-tmux-navigator'
 Plug 'elixir-lang/vim-elixir'
-" Plug 'sheerun/vim-polyglot'
-Plug 'vim-ruby/vim-ruby'
-Plug 'tpope/vim-endwise'
-Plug 'tpope/vim-rails'
-Plug 'elzr/vim-json'
+"Plug 'elmcast/elm-vim'
+Plug 'ervandew/supertab'
 Plug 'godlygeek/tabular'
-Plug 'posva/vim-vue'
-" Plug 'jelera/vim-javascript-syntax'
-Plug 'plasticboy/vim-markdown'
+"Plug 'hynek/vim-python-pep8-indent'
+Plug 'itchyny/lightline.vim'
+"Plug 'janko-m/vim-test'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all --no-update-rc' }
+Plug 'junegunn/fzf.vim'
+Plug 'morhetz/gruvbox'
+"Plug 'neovimhaskell/haskell-vim'
 Plug 'pangloss/vim-javascript'
-"Plug 'Quramy/vim-js-pretty-template'
-"Plug 'mxw/vim-jsx'
-"Plug 'jparise/vim-graphql'
+Plug 'scrooloose/nerdtree'
+"Plug 'simnalamburt/vim-mundo'
+Plug 'slashmili/alchemist.vim'
+Plug 'stefandtw/quickfix-reflector.vim'
+Plug 'thinca/vim-visualstar'
+Plug 'jiangmiao/auto-pairs'
 Plug 'leafgarland/typescript-vim'
-Plug 'othree/es.next.syntax.vim'
-" Plug 'HerringtonDarkholme/yats'
-Plug 'othree/yajs.vim'
-" Plug 'Quramy/tsuquyomi'
-" Syntax errors
-Plug 'ntpeters/vim-better-whitespace'
-
-
-
-    " JavaScript {{{
-        " Plug 'othree/yajs.vim' ", { 'for': [ 'javascript', 'javascript.jsx', 'html' ] }
-
-        " Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx', 'html'] }
-        " Plug 'moll/vim-node', { 'for': 'javascript' }
-        " Plug 'mxw/vim-jsx' ", { 'for': ['javascript.jsx', 'javascript'] }
-        "Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'], 'do': 'npm install' }
-    " }}}
-
-    " TypeScript {{{
-        " Plug 'HerringtonDarkholme/yats.vim', { 'for': 'typescript' }
-        " Plug 'leafgarland/typescript-vim'
-        " Plug 'Shougo/vimproc.vim', { 'do': 'make' }
-
-        " Plug 'mhartington/nvim-typescript', { 'for': 'typescript', 'do': './install.sh' }
-        " let g:nvim_typescript#diagnosticsEnable = 0
-        " let g:nvim_typescript#max_completion_detail=100
-        " Plug 'Quramy/tsuquyomi', { 'for': 'typescript', 'do': 'npm install' }
-        " let g:tsuquyomi_completion_detail = 1
-        " let g:tsuquyomi_disable_default_mappings = 1
-        " let g:tsuquyomi_completion_detail = 1
-    " }}}
-
-
-
+Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-endwise'
+" Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-markdown'
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-repeat'
+" Plug 'tpope/vim-rhubarb'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
+Plug 'vim-ruby/vim-ruby'
+"Plug 'vim-scripts/YankRing.vim'
+Plug 'w0rp/ale'
+Plug 'zhaocai/GoldenView.Vim'
+Plug 'posva/vim-vue'
+Plug 'airblade/vim-gitgutter'
 
 call plug#end()
-let g:gruvbox_contrast_dark = 'hard'
-let g:gruvbox_bold = 1
-let g:gruvbox_italic = 1
-let g:gruvbox_underline = 0
+" }}}
 
-"let g:indentLine_char = 'c'
+" General settings {{{
+set encoding=utf-8
+set t_Co=256                      " moar colors
+set clipboard=unnamed             " use system clipboard
+set nocompatible                  " nocompatible is good for humans
+syntax enable                     " enable syntax highlighting...
+filetype plugin indent on         " depending on filetypes...
+runtime macros/matchit.vim        " with advanced matching capabilities
+set pastetoggle=<F12>             " for pasting code into Vim
+set timeout tm=1000 ttm=10        " fix slight delay after pressing Esc then O
+set autoread                      " auto load files if vim detects change
+set autowrite                     " auto write files when moving around
+set nobackup                      " disable backup files...
+set noswapfile                    " and swap files
+set updatetime=100
+set lazyredraw
 
-let g:ackprg = 'ag --vimgrep --smart-case'
-cnoreabbrev ag Ack
-cnoreabbrev aG Ack
-cnoreabbrev Ag Ack
-cnoreabbrev AG Ack
-" let g:gitgutter_terminal_reports_focus=0
-if (has("termguicolors"))
- set termguicolors
-endif
+" doing change
 
-" Theme
-let g:airline_powerline_fonts = 1
-syntax enable
+" Style
 set background=dark
-colorscheme gruvbox
-let g:airline_theme='gruvbox'
-if (exists('+colorcolumn'))
-    set colorcolumn=100
-    highlight ColorColumn ctermbg=3
+silent! color gruvbox
+set number                        " line numbers are cool
+set relativenumber                " relative numbers are cooler
+set ruler                         " show the cursor position all the time
+set nocursorline                  " disable cursor line
+set showcmd                       " display incomplete commands
+set novisualbell                  " no flashes please
+set scrolloff=3                   " provide some context whenThen move the cursor, and paste the text at the new position (press p to paste after the line with the cursor, or P to paste before). editing
+set hidden                        " Allow backgrounding buffers without writing them, and
+                                  " remember marks/undo for backgrounded buffers
+" Mouse
+set mouse=a                       " we love the mouse
+if !has('nvim')
+  set ttymouse=xterm2             " and we want it to be fast
 endif
-nmap í :Ag -A5 -B5 <c-r>=expand("<cword>")<cr><cr>
-nnoremap <space>/ :Ag
-" let g:alchemist#elixir_erlang_src = "~/projects/ELIXIR/source/combined"
-" Setup some default ignores
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/](\.(git|hg|svn)|\_site|_build|dist|node_modules)$',
-  \ 'file': '\v\.(exe|so|dll|class|png|jpg|jpeg)$',
-\}
+set mousehide                     " but hide it when we're writing
 
-let &l:winheight = &lines / 2
+" Whitespace
+set nowrap                        " don't wrap lines
+set tabstop=2                     " a tab is two spaces
+set shiftwidth=2                  " an autoindent (with <<) is two spaces
+set softtabstop=2                 " when deleting, treat spaces as tabs
+set expandtab                     " use spaces, not tabs
+set list                          " show invisible characters
+set backspace=indent,eol,start    " backspace through everything in insert mode
+set autoindent                    " keep indentation level when no indent is found
 
-" Autocomplete - seems to use lot of CPU - check later
-" let g:deoplete#enable_at_startup = 1
-" let g:ale_completion_enabled = 1
+" Wild life
+set wildmenu                      " wildmenu gives autocompletion to vim
+set wildmode=list:longest,full    " autocompletion shouldn't jump to the first match
+set wildignore+=*.scssc,*.sassc,*.csv,*.pyc,*.xls
+set wildignore+=tmp/**,node_modules/**,bower_components/**
 
-" use system clipboard
-set clipboard=unnamedplus
+" List chars
+set listchars=""                  " reset the listchars
+set listchars=tab:▸\ ,eol:¬       " a tab should display as "▸ ", end of lines as "¬"
+set listchars+=trail:.            " show trailing spaces as dots
+set listchars+=extends:>          " the character to show in the last column when wrap is
+                                  " off and the line continues beyond the right of the screen
+set listchars+=precedes:<         " the character to show in the first column when wrap is
+                                  " off and the line continues beyond the left of the screen
+set fillchars+=vert:\             " set vertical divider to empty space
 
-set list
-set listchars=tab:▸\ ,eol:¬
+" Searching
+set hlsearch                      " highlight matches...
+nohlsearch                        " but don't highlight last search when reloading
+set incsearch                     " incremental searching
+set ignorecase                    " searches are case insensitive...
+set smartcase                     " unless they contain at least one capital letter
 
-" Use the nearest .git directory as the cwd
-" This makes a lot of sense if you are working on a project that is in version
-" control. It also supports works with .svn, .hg, .bzr.
-let g:ctrlp_working_path_mode = 'r'
-let mapleader = "\\"
-" Use a leader instead of the actual named binding
-nmap <leader>p :CtrlP<cr>
-" Easy bindings for its various modes
-nmap <leader>bb :CtrlPBuffer<cr>
-nmap <leader>bm :CtrlPMixed<cr>
-nmap <leader>bs :CtrlPMRU<cr>
+" Windows
+set splitright                    " create new horizontal split on the right
+set splitbelow                    " create new vertical split below the current window
 
-nmap <leader>dd :ALEGoToDefinition<cr>
-nmap <leader>dr :ALEFindReferences<cr>
+" Backup and status line
+set backupdir=~/.vim/_backup    " where to put backup files.
+set directory=~/.vim/_temp      " where to put swap files.
+set laststatus=2
+" }}}
 
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
+" FileType settings {{{
+if has("autocmd")
+  " in Makefiles use real tabs, not tabs expanded to spaces
+  augroup filetype_make
+    au!
+    au FileType make setl ts=8 sts=8 sw=8 noet
+  augroup END
 
-nnoremap ; :
+  " make sure all markdown files have the correct filetype set and setup wrapping
+  augroup filetype_markdown
+    au!
+    au FileType markdown setl tw=80
+    au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn,txt} setf markdown
+  augroup END
 
-vmap > >gv
-vmap < <gv
+  " treat JSON files like JavaScript
+  augroup filetype_json
+    au!
+    au BufNewFile,BufRead *.json setf javascript
+  augroup END
 
-let g:vim_markdown_folding_disabled = 1
+  " disable endwise for anonymous functions
+  augroup filetype_elixir_endwise
+    au!
+    au BufNewFile,BufRead *.{ex,exs}
+          \ let b:endwise_addition = '\=submatch(0)=="fn" ? "end)" : "end"'
+  augroup END
 
-nmap <leader>s :VialHttp<cr>
+  " make Python follow PEP8 ( http://www.python.org/dev/peps/pep-0008/ )
+  augroup filetype_python
+    au!
+    au FileType python setl sts=4 ts=4 sw=4
+  augroup END
 
-" Use the right side of the screen
-let g:buffergator_viewport_split_policy = 'R'
-" temporary solution before better syntax highlighting will be found for ts
-autocmd BufNewFile,BufRead *.ts set syntax=javascript
+  " follow Elm conventions
+  augroup filetype_elm
+    au!
+    au FileType elm setl sts=4 ts=4 sw=4
+  augroup END
 
-" Setting for dbext plugin - used for accessing any database
-let g:dbext_default_profile_psql = 'type=PGSQL:host=localhost:port=5432:dbname=observer:user=observer'
-let g:dbext_default_profile = 'psql'
+  " delete Fugitive buffers when they become inactive
+  augroup filetype_fugitive
+    au!
+    au BufReadPost fugitive://* set bufhidden=delete
+  augroup END
+
+  " fold automatically with triple {
+  augroup filetype_vim
+    au!
+    au FileType vim,javascript,python,c setlocal foldmethod=marker nofoldenable
+  augroup END
+
+  " enable <CR> in command line window and quickfix
+  augroup enable_cr
+    au!
+    au CmdwinEnter * nnoremap <buffer> <CR> <CR>
+    au BufWinEnter quickfix nnoremap <buffer> <CR> <CR>
+  augroup END
+
+  " disable automatic comment insertion
+  augroup auto_comments
+    au!
+    au FileType * setlocal formatoptions-=ro
+  augroup END
+
+  " disable numbers in terminal windows
+  augroup terminal_numbers
+    au!
+    autocmd TermOpen * setlocal nonumber norelativenumber
+  augroup END
+
+  " remember last location in file, but not for commit messages,
+  " or when the position is invalid or inside an event handler,
+  " or when the mark is in the first line, that is the default
+  " position when opening a file. See :help last-position-jump
+  augroup last_position
+    au!
+    au BufReadPost *
+      \ if &filetype !~ '^git\c' && line("'\"") > 1 && line("'\"") <= line("$") |
+      \   exe "normal! g`\"" |
+      \ endif
+  augroup END
+endif
+" }}}
+
+" Mappings {{{
+let mapleader=','
+
+" open vimrc and reload it
+nnoremap <Leader>vv :vsplit $HOME/.vimrc<CR>
+nnoremap <Leader>sv :source $HOME/.vimrc<CR>
+
+" disable man page for word under cursor
+nnoremap K <Nop>
+
+" Y u no consistent?
+function! YRRunAfterMaps()
+  nnoremap <silent> Y :<C-U>YRYankCount 'y$'<CR>
+endfunction
+
+" clear the search buffer when hitting return
+nnoremap <CR> :nohlsearch<CR>
+
+" expand %% to current directory
+cnoremap %% <C-R>=expand('%:h').'/'<CR>
+nmap <Leader>e :e %%
+
+" easy way to switch between latest files
+nnoremap <Leader><Leader> <C-^>
+nnoremap <Leader>vs :execute "vsplit " . bufname("#")<CR>
+nnoremap <Leader>sp :execute "split " . bufname("#")<CR>
+
+" find merge conflict markers
+nnoremap <silent> <Leader>cf <Esc>/\v^[<=>]{7}( .*\|$)<CR>
+
+" show colorcolumn
+nnoremap <silent> <Leader>sc :set colorcolumn=80<CR>
+
+" copy current path
+nnoremap <silent> <Leader>p :let @* = expand("%")<CR>
+
+" easy substitutions
+nnoremap <Leader>r :%s///gc<Left><Left><Left>
+nnoremap <Leader>R :%s:::gc<Left><Left><Left>
+
+" remove whitespaces and windows EOL
+command! KillWhitespace :normal :%s/\s\+$//e<CR><C-O><CR>
+command! KillControlM :normal :%s/<C-V><C-M>//e<CR><C-O><CR>
+nnoremap <Leader>kw :KillWhitespace<CR>
+nnoremap <Leader>kcm :KillControlM<CR>
+
+" compile c programs
+nnoremap <Leader>cc :w\|:!gcc % -Wall && ./a.out<CR>
+
+" compile example elm program
+nnoremap <silent> <Leader>ce :w\|:!elm-make Main.elm --output app.js<CR>
+
+" easy global search
+nnoremap <C-S> :Ag <C-R><C-W><CR>
+vnoremap <C-S> y<Esc>:Ag <C-R>"<CR>
+
+" easier navigation between split windows
+nnoremap <C-J> <C-W>j
+nnoremap <C-K> <C-W>k
+nnoremap <C-H> <C-W>h
+nnoremap <C-L> <C-W>l
+
+" disable cursor keys in normal mode
+"nnoremap <Left>  :echo "no!"<CR>
+"nnoremap <Right> :echo "no!"<CR>
+"nnoremap <Up>    :echo "no!"<CR>
+"nnoremap <Down>  :echo "no!"<CR>
+
+" Fugitive
+nnoremap <Leader>gs  :Gstatus<CR>
+nnoremap <Leader>gd  :Gdiff<CR>
+nnoremap <Leader>gci :Gcommit<CR>
+nnoremap <Leader>gw  :Gwrite<CR>
+nnoremap <Leader>gr  :Gread<CR>
+nnoremap <Leader>gb  :Gblame<CR>
+
+" Plugins mapping
+nnoremap <Leader>w :ALEDetail<CR>
+nnoremap <Leader>x :ALENextWrap<CR>
+nnoremap <Leader>f :Files<CR>
+nnoremap <Leader>b :Buffers<CR>
+nnoremap <Leader>m :History<CR>
+nnoremap <silent> <S-left> <Esc>:bp<CR>
+nnoremap <silent> <S-right> <Esc>:bn<CR>
+nnoremap <Leader>a <Esc>:Ag<space>
+nnoremap <Leader>n :NERDTreeToggle<CR>
+nnoremap <Leader>u :MundoToggle<CR>
+nnoremap <Leader>t :wa<CR>\|:TestFile<CR>
+nnoremap <Leader>T :wa<CR>\|:TestNearest<CR>
+" }}
+
+" Plugins configuration {{{
+hi ALEError guibg=124 ctermbg=124 gui=NONE cterm=NONE
+
+let g:NERDTreeHighlightCursorline = 0
+let g:NERDTreeMouseMode = 3
+let g:ale_lint_on_text_changed = 'never'
+let g:elixir_use_markdown_for_docs = 1
+let g:elm_format_autosave = 1
+let g:elm_format_fail_silently = 1
+let g:fzf_layout = { 'down': '~30%' }
+let g:goldenview__enable_default_mapping = 0
+let g:html_indent_inctags = "html,body,head,tbody"
+let g:html_indent_script1 = "inc"
+let g:html_indent_style1 = "inc"
+let g:lightline = { 'mode_fallback': { 'terminal': 'normal' } }
+let g:loaded_python3_provider = 1
+let g:mundo_right = 1
+let g:ruby_indent_access_modifier_style = 'normal'
+let g:test#preserve_screen = 1
+let g:test#strategy = "vimux"
+let g:yankring_clipboard_monitor = 0
+let g:yankring_history_dir = '$HOME/.vim'
+let g:UltiSnipsSnippetsDir = '$HOME/.vim/UltiSnips'
+" }}}
+
+command! -bang -nargs=* Ag
+  \ call fzf#vim#ag(<q-args>,
+  \                 <bang>0 ? fzf#vim#with_preview({ 'options': '--bind ctrl-a:select-all,ctrl-d:deselect-all' }, 'up:60%')
+  \                         : fzf#vim#with_preview({ 'options': '--bind ctrl-a:select-all,ctrl-d:deselect-all' }, 'right:50%:hidden', '?'),
+  \                 <bang>0)
+let g:gitgutter_terminal_reports_focus=0

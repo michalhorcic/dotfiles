@@ -1,15 +1,18 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+export TERM="xterm-256color"
+#export PATH=/Users/mousse/Library/Python/3.7/bin
 # Path to your oh-my-zsh installation.
-export ZSH="/home/mousse/.oh-my-zsh"
+export ZSH="/Users/mousse/.oh-my-zsh"
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="powerlevel9k/powerlevel9k"
 
-POWERLEVEL9K_MODE='nerdfont-complete'
+# POWERLEVEL9K_MODE='nerdfont-complete'
+POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
@@ -64,8 +67,8 @@ POWERLEVEL9K_MODE='nerdfont-complete'
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git,
-  zsh-syntax-highlightling
+#  git,
+#  zsh-syntax-highlightling
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -80,7 +83,10 @@ export LC_CTYPE=en_GB.UTF-8
 PATH="$HOME/.node_modules/bin:$PATH"
 export npm_config_prefix=~/.node_modules
 
-alias df="df -h"
+export PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH"
+
+export PATH=/usr/local/sbin:$PATH
+alias sdf="df -h"
 alias ls="ls -lt"
 alias gst="git status"
 
@@ -106,6 +112,9 @@ eval "$(rbenv init -)"
 #   export EDITOR='mvim'
 # fi
 
+# ignore node_modules folder
+export FZF_DEFAULT_COMMAND='ag --nocolor --ignore node_modules -g ""'
+
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
@@ -125,3 +134,6 @@ copy="COPYRIGHT 2075-2077 ROBCO INDUSTRIES"
 printf "%*s\n" $(((${#robco}+$COLUMNS)/2)) "$robco"
 printf "%*s\n" $(((${#copy}+$COLUMNS)/2)) "$copy"
 source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
