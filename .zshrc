@@ -4,7 +4,7 @@
 export TERM="xterm-256color"
 #export PATH=/Users/mousse/Library/Python/3.7/bin
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/mousse/.oh-my-zsh"
+export ZSH="/home/mousse/.oh-my-zsh"
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -76,14 +76,12 @@ source $ZSH/oh-my-zsh.sh
 
 export ERL_FLAGS="-kernel shell_history enabled"
 
-export LANG=en_GB.UTF-8
-export LC_ALL=en_GB.UTF-8
-export LC_CTYPE=en_GB.UTF-8
+#export LANG=en_GB.UTF-8
+#export LC_ALL=en_GB.UTF-8
+#export LC_CTYPE=en_GB.UTF-8
 
 PATH="$HOME/.node_modules/bin:$PATH"
 export npm_config_prefix=~/.node_modules
-
-export PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH"
 
 export PATH=/usr/local/sbin:$PATH
 alias sdf="df -h"
@@ -95,8 +93,6 @@ alias tm="tmux"
 alias tml="tmux ls"
 
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-
-eval "$(rbenv init -)"
 
 # User configuration
 
@@ -113,7 +109,7 @@ eval "$(rbenv init -)"
 # fi
 
 # ignore node_modules folder
-export FZF_DEFAULT_COMMAND='ag --nocolor --ignore node_modules -g ""'
+export FZF_DEFAULT_COMMAND='ag --hidden --ignore node_modules -g ""'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -133,7 +129,6 @@ robco="ROBCO INDUSTRIES OPERATING SYSTEM"
 copy="COPYRIGHT 2075-2077 ROBCO INDUSTRIES"
 printf "%*s\n" $(((${#robco}+$COLUMNS)/2)) "$robco"
 printf "%*s\n" $(((${#copy}+$COLUMNS)/2)) "$copy"
-source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
