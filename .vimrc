@@ -2,23 +2,15 @@
 call plug#begin('~/.vim/plugged')
 
 Plug 'NLKNguyen/papercolor-theme'
-"Plug 'SirVer/ultisnips'
-"Plug 'benmills/vimux'
-"Plug 'christoomey/vim-tmux-navigator'
 Plug 'elixir-lang/vim-elixir'
-"Plug 'elmcast/elm-vim'
-"Plug 'ervandew/supertab'
 Plug 'godlygeek/tabular'
-"Plug 'hynek/vim-python-pep8-indent'
 Plug 'itchyny/lightline.vim'
-"Plug 'janko-m/vim-test'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all --no-update-rc' }
 Plug 'junegunn/fzf.vim'
 Plug 'morhetz/gruvbox'
-"Plug 'neovimhaskell/haskell-vim'
 Plug 'pangloss/vim-javascript'
 Plug 'scrooloose/nerdtree'
-"Plug 'simnalamburt/vim-mundo'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'slashmili/alchemist.vim'
 Plug 'stefandtw/quickfix-reflector.vim'
 Plug 'thinca/vim-visualstar'
@@ -27,17 +19,14 @@ Plug 'leafgarland/typescript-vim'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
-" Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-markdown'
+Plug 'diepm/vim-rest-console'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-repeat'
-" Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'vim-ruby/vim-ruby'
-"Plug 'vim-scripts/YankRing.vim'
-"Plug 'w0rp/ale'
 Plug 'zhaocai/GoldenView.Vim'
 Plug 'posva/vim-vue'
 Plug 'airblade/vim-gitgutter'
@@ -62,9 +51,6 @@ set nobackup                      " disable backup files...
 set noswapfile                    " and swap files
 set updatetime=100
 set lazyredraw
-
-" doing change
-
 
 " COC
 " Use tab for trigger completion with characters ahead and navigate.
@@ -163,6 +149,12 @@ if has("autocmd")
     au BufNewFile,BufRead *.json setf javascript
   augroup END
 
+  " treat JSON files like JavaScript
+  augroup filetype_typescript
+    au!
+    au BufNewFile,BufRead *.ts setf javascript
+  augroup END
+
   " disable endwise for anonymous functions
   augroup filetype_elixir_endwise
     au!
@@ -237,11 +229,6 @@ nnoremap <Leader>sv :source $HOME/.vimrc<CR>
 " disable man page for word under cursor
 nnoremap K <Nop>
 
-" Y u no consistent?
-function! YRRunAfterMaps()
-  nnoremap <silent> Y :<C-U>YRYankCount 'y$'<CR>
-endfunction
-
 " clear the search buffer when hitting return
 nnoremap <CR> :nohlsearch<CR>
 
@@ -273,16 +260,6 @@ command! KillControlM :normal :%s/<C-V><C-M>//e<CR><C-O><CR>
 nnoremap <Leader>kw :KillWhitespace<CR>
 nnoremap <Leader>kcm :KillControlM<CR>
 
-" compile c programs
-nnoremap <Leader>cc :w\|:!gcc % -Wall && ./a.out<CR>
-
-" compile example elm program
-nnoremap <silent> <Leader>ce :w\|:!elm-make Main.elm --output app.js<CR>
-
-" easy global search
-nnoremap <C-S> :Ag <C-R><C-W><CR>
-vnoremap <C-S> y<Esc>:Ag <C-R>"<CR>
-
 " easier navigation between split windows
 nnoremap <C-J> <C-W>j
 nnoremap <C-K> <C-W>k
@@ -313,20 +290,16 @@ nnoremap <silent> <S-left> <Esc>:bp<CR>
 nnoremap <silent> <S-right> <Esc>:bn<CR>
 nnoremap <Leader>a <Esc>:Ag<space>
 nnoremap <Leader>n :NERDTreeToggle<CR>
-nnoremap <Leader>u :MundoToggle<CR>
 nnoremap <Leader>t :wa<CR>\|:TestFile<CR>
 nnoremap <Leader>T :wa<CR>\|:TestNearest<CR>
 " }}
 
 " Plugins configuration {{{
-" hi ALEError guibg=124 ctermbg=124 gui=NONE cterm=NONE
-
 let g:NERDTreeHighlightCursorline = 0
 let g:NERDTreeMouseMode = 3
-" let g:ale_lint_on_text_changed = 'never'
 let g:elixir_use_markdown_for_docs = 1
-" let g:elm_format_autosave = 1
-" let g:elm_format_fail_silently = 1
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
 let g:fzf_layout = { 'down': '~30%' }
 let g:goldenview__enable_default_mapping = 0
 let g:html_indent_inctags = "html,body,head,tbody"
@@ -334,7 +307,6 @@ let g:html_indent_script1 = "inc"
 let g:html_indent_style1 = "inc"
 let g:lightline = { 'mode_fallback': { 'terminal': 'normal' } }
 let g:loaded_python3_provider = 1
-let g:mundo_right = 1
 let g:ruby_indent_access_modifier_style = 'normal'
 let g:test#preserve_screen = 1
 let g:test#strategy = "vimux"
