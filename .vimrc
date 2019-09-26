@@ -7,7 +7,7 @@ Plug 'NLKNguyen/papercolor-theme'
 "Plug 'christoomey/vim-tmux-navigator'
 Plug 'elixir-lang/vim-elixir'
 "Plug 'elmcast/elm-vim'
-Plug 'ervandew/supertab'
+"Plug 'ervandew/supertab'
 Plug 'godlygeek/tabular'
 "Plug 'hynek/vim-python-pep8-indent'
 Plug 'itchyny/lightline.vim'
@@ -37,10 +37,11 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'vim-ruby/vim-ruby'
 "Plug 'vim-scripts/YankRing.vim'
-Plug 'w0rp/ale'
+"Plug 'w0rp/ale'
 Plug 'zhaocai/GoldenView.Vim'
 Plug 'posva/vim-vue'
 Plug 'airblade/vim-gitgutter'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 " }}}
@@ -63,6 +64,21 @@ set updatetime=100
 set lazyredraw
 
 " doing change
+
+
+" COC
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <silent><expr> <c-space> coc#refresh()
 
 " Style
 set background=dark
@@ -288,8 +304,8 @@ nnoremap <Leader>gr  :Gread<CR>
 nnoremap <Leader>gb  :Gblame<CR>
 
 " Plugins mapping
-nnoremap <Leader>w :ALEDetail<CR>
-nnoremap <Leader>x :ALENextWrap<CR>
+" nnoremap <Leader>w :ALEDetail<CR>
+" nnoremap <Leader>x :ALENextWrap<CR>
 nnoremap <Leader>f :Files<CR>
 nnoremap <Leader>b :Buffers<CR>
 nnoremap <Leader>m :History<CR>
@@ -303,14 +319,14 @@ nnoremap <Leader>T :wa<CR>\|:TestNearest<CR>
 " }}
 
 " Plugins configuration {{{
-hi ALEError guibg=124 ctermbg=124 gui=NONE cterm=NONE
+" hi ALEError guibg=124 ctermbg=124 gui=NONE cterm=NONE
 
 let g:NERDTreeHighlightCursorline = 0
 let g:NERDTreeMouseMode = 3
-let g:ale_lint_on_text_changed = 'never'
+" let g:ale_lint_on_text_changed = 'never'
 let g:elixir_use_markdown_for_docs = 1
-let g:elm_format_autosave = 1
-let g:elm_format_fail_silently = 1
+" let g:elm_format_autosave = 1
+" let g:elm_format_fail_silently = 1
 let g:fzf_layout = { 'down': '~30%' }
 let g:goldenview__enable_default_mapping = 0
 let g:html_indent_inctags = "html,body,head,tbody"
