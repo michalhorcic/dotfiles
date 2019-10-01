@@ -2,6 +2,9 @@
 call plug#begin('~/.vim/plugged')
 
 Plug 'NLKNguyen/papercolor-theme'
+Plug 'Rigellute/rigel'
+Plug 'sainnhe/edge'
+Plug 'danilo-augusto/vim-afterglow'
 Plug 'elixir-lang/vim-elixir'
 Plug 'godlygeek/tabular'
 Plug 'itchyny/lightline.vim'
@@ -38,7 +41,7 @@ call plug#end()
 " General settings {{{
 set encoding=utf-8
 set t_Co=256                      " moar colors
-set clipboard=unnamed             " use system clipboard
+set clipboard=unnamedplus             " use system clipboard
 set nocompatible                  " nocompatible is good for humans
 syntax enable                     " enable syntax highlighting...
 filetype plugin indent on         " depending on filetypes...
@@ -67,8 +70,9 @@ inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 inoremap <silent><expr> <c-space> coc#refresh()
 
 " Style
-set background=dark
-silent! color gruvbox
+" set background=dark
+" silent! color gruvbox
+colorscheme afterglow
 set number                        " line numbers are cool
 set relativenumber                " relative numbers are cooler
 set ruler                         " show the cursor position all the time
@@ -225,6 +229,10 @@ let mapleader=','
 " open vimrc and reload it
 nnoremap <Leader>vv :vsplit $HOME/.vimrc<CR>
 nnoremap <Leader>sv :source $HOME/.vimrc<CR>
+
+" use ctrl+c as ESC
+inoremap <C-c> <Esc>
+nnoremap <C-c> :w!<cr>
 
 " disable man page for word under cursor
 nnoremap K <Nop>
