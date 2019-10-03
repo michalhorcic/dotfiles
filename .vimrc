@@ -70,9 +70,9 @@ inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 inoremap <silent><expr> <c-space> coc#refresh()
 
 " Style
-" set background=dark
-" silent! color gruvbox
-colorscheme afterglow
+set background=dark
+silent! color gruvbox
+" colorscheme afterglow
 set number                        " line numbers are cool
 set relativenumber                " relative numbers are cooler
 set ruler                         " show the cursor position all the time
@@ -321,6 +321,7 @@ let g:test#strategy = "vimux"
 let g:yankring_clipboard_monitor = 0
 let g:yankring_history_dir = '$HOME/.vim'
 let g:UltiSnipsSnippetsDir = '$HOME/.vim/UltiSnips'
+let g:gruvbox_contrast_dark = 'hard'
 " }}}
 
 command! -bang -nargs=* Ag
