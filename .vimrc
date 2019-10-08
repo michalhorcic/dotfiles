@@ -12,6 +12,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all --no-update-rc' }
 Plug 'junegunn/fzf.vim'
 Plug 'morhetz/gruvbox'
 Plug 'pangloss/vim-javascript'
+Plug 'jesseleite/vim-agriculture'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'slashmili/alchemist.vim'
@@ -34,6 +35,7 @@ Plug 'zhaocai/GoldenView.Vim'
 Plug 'posva/vim-vue'
 Plug 'airblade/vim-gitgutter'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'yuttie/comfortable-motion.vim'
 
 call plug#end()
 " }}}
@@ -70,8 +72,9 @@ inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 inoremap <silent><expr> <c-space> coc#refresh()
 
 " Style
+let g:gruvbox_contrast_dark = 'hard'
 set background=dark
-silent! color gruvbox
+color gruvbox
 " colorscheme afterglow
 set number                        " line numbers are cool
 set relativenumber                " relative numbers are cooler
@@ -296,7 +299,7 @@ nnoremap <Leader>b :Buffers<CR>
 nnoremap <Leader>m :History<CR>
 nnoremap <silent> <S-left> <Esc>:bp<CR>
 nnoremap <silent> <S-right> <Esc>:bn<CR>
-nnoremap <Leader>a <Esc>:Ag<space>
+nnoremap <Leader>a <Esc>:AgRaw<space>
 nnoremap <Leader>n :NERDTreeToggle<CR>
 nnoremap <Leader>t :wa<CR>\|:TestFile<CR>
 nnoremap <Leader>T :wa<CR>\|:TestNearest<CR>
@@ -321,7 +324,6 @@ let g:test#strategy = "vimux"
 let g:yankring_clipboard_monitor = 0
 let g:yankring_history_dir = '$HOME/.vim'
 let g:UltiSnipsSnippetsDir = '$HOME/.vim/UltiSnips'
-let g:gruvbox_contrast_dark = 'hard'
 " }}}
 
 command! -bang -nargs=* Ag
