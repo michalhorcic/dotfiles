@@ -109,7 +109,9 @@ alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 # fi
 
 # ignore node_modules folder
-export FZF_DEFAULT_COMMAND='ag --hidden --ignore node_modules -g ""'
+# export FZF_DEFAULT_COMMAND='ag --hidden --ignore node_modules'
+# ignore gitignore files
+export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
