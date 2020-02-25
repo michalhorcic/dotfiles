@@ -1,0 +1,33 @@
+{
+  "diagnostic.messageTarget": "float",
+  "diagnostic.enableMessage": "always",
+  "diagnostic.errorSign": "e",
+  "diagnostic.warningSign": "w",
+  "diagnostic.messageDelay": 800,
+  "diagnostic.refreshOnInsertMode": false,
+  "diagnostic.refreshAfterSave": false,
+  "diagnostic.maxWindowHeight": 30,
+  "coc.preferences.formatOnSaveFiletypes": ["elm"],
+  "coc.preferences.snippets.enable": true,
+  "eslint.filetypes": ["javascript", "javascriptreact"],
+  "suggest.disableMenu": true,
+  "suggest.maxCompleteItemCount": 10,
+  "suggest.minTriggerInputLength": 2,
+  "suggest.snippetIndicator": " ►",
+  "tsserver.formatOnType": false,
+  "vetur.format.scriptInitialIndent": true,
+  "vetur.format.styleInitialIndent": true,
+
+  "languageserver": {
+    "elmLS": {
+      "command": "elm-language-server",
+      "filetypes": ["elm"],
+      "rootPatterns": ["elm.json"],
+      "initializationOptions": {
+        "elmAnalyseTrigger": "change"
+      }
+    }
+  },
+  // If you use neovim you can enable codelenses with this
+  "codeLens.enable": true
+}
