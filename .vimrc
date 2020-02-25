@@ -16,6 +16,7 @@ Plug 'jesseleite/vim-agriculture'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'slashmili/alchemist.vim'
+Plug 'andys8/vim-elm-syntax'
 Plug 'stefandtw/quickfix-reflector.vim'
 Plug 'thinca/vim-visualstar'
 Plug 'jiangmiao/auto-pairs'
@@ -37,7 +38,7 @@ Plug 'posva/vim-vue'
 Plug 'airblade/vim-gitgutter'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'yuttie/comfortable-motion.vim'
-Plug 'wakatime/vim-wakatime'
+Plug 'vimwiki/vimwiki'
 
 call plug#end()
 " }}}
