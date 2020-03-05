@@ -1,7 +1,7 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-export TERM="xterm-256color"
+# export TERM="xterm-256color"
 #export PATH=/Users/mousse/Library/Python/3.7/bin
 # Path to your oh-my-zsh installation.
 export ZSH="/home/mousse/.oh-my-zsh"
@@ -85,12 +85,16 @@ export npm_config_prefix=~/.node_modules
 
 export PATH=/usr/local/sbin:$PATH
 alias sdf="df -h"
-alias ls="ls -lt"
+alias ls="exa -la"
 alias gst="git status"
 
 alias e="nvim"
 alias tm="tmux"
 alias tml="tmux ls"
+
+# taskwarrior aliases
+alias th="task +HOME list"
+alias tw="task +WORK list"
 
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
@@ -134,3 +138,6 @@ printf "%*s\n" $(((${#copy}+$COLUMNS)/2)) "$copy"
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
