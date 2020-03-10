@@ -1,16 +1,13 @@
 "ns {{{
 call plug#begin('~/.vim/plugged')
 
-Plug 'NLKNguyen/papercolor-theme'
-Plug 'Rigellute/rigel'
-Plug 'sainnhe/edge'
 Plug 'danilo-augusto/vim-afterglow'
+Plug 'morhetz/gruvbox'
 Plug 'elixir-lang/vim-elixir'
 Plug 'godlygeek/tabular'
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all --no-update-rc' }
 Plug 'junegunn/fzf.vim'
-Plug 'morhetz/gruvbox'
 Plug 'pangloss/vim-javascript'
 Plug 'jesseleite/vim-agriculture'
 Plug 'scrooloose/nerdtree'
@@ -18,19 +15,15 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'slashmili/alchemist.vim'
 Plug 'andys8/vim-elm-syntax'
 Plug 'stefandtw/quickfix-reflector.vim'
-Plug 'thinca/vim-visualstar'
 Plug 'jiangmiao/auto-pairs'
 Plug 'leafgarland/typescript-vim'
-Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-markdown'
 Plug 'diepm/vim-rest-console'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-unimpaired'
 Plug 'vim-ruby/vim-ruby'
 " Plug 'Yggdroot/indentLine'
 Plug 'zhaocai/GoldenView.Vim'
@@ -181,7 +174,7 @@ if has("autocmd")
   " follow Elm conventions
   augroup filetype_elm
     au!
-    au FileType elm setl sts=4 ts=4 sw=4
+    au FileType elm setl sts=4 ts=4 sw=4 et
   augroup END
 
   " delete Fugitive buffers when they become inactive
@@ -312,8 +305,8 @@ nnoremap <Leader>T :wa<CR>\|:TestNearest<CR>
 nmap <leader>r <Plug>(coc-rename)
 nmap <silent> <leader>s <Plug>(coc-fix-current)
 nmap <silent> <leader>S <Plug>(coc-codeaction)
-nmap <silent> <leader>a <Plug>(coc-diagnostic-next)
-nmap <silent> <leader>A <Plug>(coc-diagnostic-next-error)
+" nmap <silent> <leader>a <Plug>(coc-diagnostic-next)
+" nmap <silent> <leader>A <Plug>(coc-diagnostic-next-error)
 nmap <silent> <leader>d <Plug>(coc-definition)
 nmap <silent> <leader>g :call CocAction('doHover')<CR>
 nmap <silent> <leader>u <Plug>(coc-references)
