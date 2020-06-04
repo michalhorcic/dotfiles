@@ -1,15 +1,22 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# export TERM="xterm-256color"
+export TERM="xterm-256color"
 #export PATH=/Users/mousse/Library/Python/3.7/bin
 # Path to your oh-my-zsh installation.
-export ZSH="/home/mousse/.oh-my-zsh"
+export ZSH="/Users/mousse/.oh-my-zsh"
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="powerlevel9k/powerlevel9k"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # POWERLEVEL9K_MODE='nerdfont-complete'
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
@@ -76,25 +83,21 @@ source $ZSH/oh-my-zsh.sh
 
 export ERL_FLAGS="-kernel shell_history enabled"
 
-#export LANG=en_GB.UTF-8
-#export LC_ALL=en_GB.UTF-8
-#export LC_CTYPE=en_GB.UTF-8
+export LANG=en_GB.UTF-8
+export LC_ALL=en_GB.UTF-8
+export LC_CTYPE=en_GB.UTF-8
 
 PATH="$HOME/.node_modules/bin:$PATH"
 export npm_config_prefix=~/.node_modules
 
 export PATH=/usr/local/sbin:$PATH
 alias sdf="df -h"
-alias ls="exa -la"
+alias ls="ls -lt"
 alias gst="git status"
 
 alias e="nvim"
 alias tm="tmux"
 alias tml="tmux ls"
-
-# taskwarrior aliases
-alias th="task +HOME list"
-alias tw="task +WORK list"
 
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
@@ -113,9 +116,7 @@ alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 # fi
 
 # ignore node_modules folder
-# export FZF_DEFAULT_COMMAND='ag --hidden --ignore node_modules'
-# ignore gitignore files
-export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+export FZF_DEFAULT_COMMAND='ag --hidden --ignore node_modules -g ""'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -138,6 +139,6 @@ printf "%*s\n" $(((${#copy}+$COLUMNS)/2)) "$copy"
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
-export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
