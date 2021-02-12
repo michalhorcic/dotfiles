@@ -3,6 +3,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'danilo-augusto/vim-afterglow'
 Plug 'morhetz/gruvbox'
+Plug 'drewtempelmeyer/palenight.vim'
 Plug 'elixir-lang/vim-elixir'
 Plug 'godlygeek/tabular'
 Plug 'itchyny/lightline.vim'
@@ -17,6 +18,7 @@ Plug 'andys8/vim-elm-syntax'
 Plug 'stefandtw/quickfix-reflector.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'leafgarland/typescript-vim'
+Plug 'neomake/neomake'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
@@ -70,7 +72,10 @@ inoremap <silent><expr> <c-space> coc#refresh()
 " Style
 let g:gruvbox_contrast_dark = 'hard'
 set background=dark
-color gruvbox
+
+colorscheme palenight
+
+" color gruvbox
 " colorscheme afterglow
 set number                        " line numbers are cool
 set relativenumber                " relative numbers are cooler
@@ -325,7 +330,8 @@ let g:goldenview__enable_default_mapping = 0
 let g:html_indent_inctags = "html,body,head,tbody"
 let g:html_indent_script1 = "inc"
 let g:html_indent_style1 = "inc"
-let g:lightline = { 'mode_fallback': { 'terminal': 'normal' } }
+" let g:lightline = { 'mode_fallback': { 'terminal': 'normal' } }
+let g:lightline = { 'colorscheme': 'palenight' }
 let g:loaded_python3_provider = 1
 let g:ruby_indent_access_modifier_style = 'normal'
 let g:test#preserve_screen = 1
@@ -334,6 +340,22 @@ let g:yankring_clipboard_monitor = 0
 let g:yankring_history_dir = '$HOME/.vim'
 let g:UltiSnipsSnippetsDir = '$HOME/.vim/UltiSnips'
 " }}}
+
+if (has("nvim"))
+  "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+endif
+
+"For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
+"Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
+" < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
+if (has("termguicolors"))
+  set termguicolors
+endif
+
+
+let g:neomake_elixir_enabled_makers = ['credo']
+autocmd! BufWritePost * Neomake
 
 command! -bang -nargs=* Ag
   \ call fzf#vim#ag(<q-args>,
