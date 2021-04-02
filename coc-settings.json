@@ -1,12 +1,13 @@
 {
-  "diagnostic.messageTarget": "float",
+  "diagnostic.messageTarget": "echo",
   "diagnostic.enableMessage": "always",
   "diagnostic.errorSign": "e",
   "diagnostic.warningSign": "w",
-  "diagnostic.messageDelay": 800,
+  "diagnostic.hintSign": "h",
+  "diagnostic.messageDelay": 500,
   "diagnostic.refreshOnInsertMode": false,
   "diagnostic.refreshAfterSave": false,
-  "diagnostic.maxWindowHeight": 30,
+  "diagnostic.maxWindowHeight": 2,
   "coc.preferences.formatOnSaveFiletypes": ["elm"],
   "coc.preferences.snippets.enable": true,
   "eslint.filetypes": ["javascript", "javascriptreact"],
@@ -14,6 +15,10 @@
   "suggest.maxCompleteItemCount": 10,
   "suggest.minTriggerInputLength": 2,
   "suggest.snippetIndicator": " ►",
+  "suggest.enablePreview": false,
+  "suggest.maxWindowHeight": 2,
+  "suggest.floatEnable": false,
+  "signature.target": "echo",
   "tsserver.formatOnType": false,
   "vetur.format.scriptInitialIndent": true,
   "vetur.format.styleInitialIndent": true,
@@ -29,5 +34,5 @@
     }
   },
   // If you use neovim you can enable codelenses with this
-  "codeLens.enable": true
+  "codeLens.enable": false
 }
