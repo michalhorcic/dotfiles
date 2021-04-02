@@ -2,7 +2,18 @@
 call plug#begin('~/.vim/plugged')
 
 Plug 'danilo-augusto/vim-afterglow'
+Plug 'mhartington/oceanic-next'
+Plug 'nathanaelkane/vim-indent-guides'
 Plug 'morhetz/gruvbox'
+Plug 'jnurmine/Zenburn'
+Plug 'franbach/miramare'
+Plug 'jonathanfilip/lucius'
+Plug 'nanotech/jellybeans.vim', { 'tag': 'v1.7' }
+Plug 'cocopon/iceberg.vim'
+Plug 'ajmwagar/vim-deus'
+Plug 'ghifarit53/tokyonight-vim'
+Plug 'jacoborus/tender.vim'
+Plug 'sonph/onehalf', { 'rtp': 'vim' }
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'elixir-lang/vim-elixir'
 Plug 'godlygeek/tabular'
@@ -40,7 +51,6 @@ call plug#end()
 
 " General settings {{{
 set encoding=utf-8
-set t_Co=256                      " moar colors
 set clipboard=unnamedplus             " use system clipboard
 set nocompatible                  " nocompatible is good for humans
 syntax enable                     " enable syntax highlighting...
@@ -70,10 +80,21 @@ inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 inoremap <silent><expr> <c-space> coc#refresh()
 
 " Style
-let g:gruvbox_contrast_dark = 'hard'
-set background=dark
+" let g:gruvbox_contrast_dark = 'hard'
+" set background=dark
+" let g:deus_termcolors=256
 
-colorscheme palenight
+" colorscheme palenight
+
+set t_Co=256
+set termguicolors
+
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+
+set background=dark    " Setting dark mode
+colorscheme deus
+let g:deus_termcolors=256
 
 " color gruvbox
 " colorscheme afterglow
@@ -81,6 +102,8 @@ set number                        " line numbers are cool
 set relativenumber                " relative numbers are cooler
 set ruler                         " show the cursor position all the time
 set nocursorline                  " disable cursor line
+" set cursorcolumn
+" set cursorline
 set showcmd                       " display incomplete commands
 set novisualbell                  " no flashes please
 set scrolloff=3                   " provide some context whenThen move the cursor, and paste the text at the new position (press p to paste after the line with the cursor, or P to paste before). editing
@@ -331,7 +354,7 @@ let g:html_indent_inctags = "html,body,head,tbody"
 let g:html_indent_script1 = "inc"
 let g:html_indent_style1 = "inc"
 " let g:lightline = { 'mode_fallback': { 'terminal': 'normal' } }
-let g:lightline = { 'colorscheme': 'palenight' }
+let g:lightline = { 'colorscheme': 'deus' }
 let g:loaded_python3_provider = 1
 let g:ruby_indent_access_modifier_style = 'normal'
 let g:test#preserve_screen = 1
