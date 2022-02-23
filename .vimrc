@@ -1,49 +1,71 @@
 "ns {{{
 call plug#begin('~/.vim/plugged')
 
-Plug 'danilo-augusto/vim-afterglow'
-Plug 'mhartington/oceanic-next'
-Plug 'nathanaelkane/vim-indent-guides'
+" Plug 'nathanaelkane/vim-indent-guides'
 Plug 'morhetz/gruvbox'
-Plug 'jnurmine/Zenburn'
-Plug 'franbach/miramare'
-Plug 'jonathanfilip/lucius'
-Plug 'nanotech/jellybeans.vim', { 'tag': 'v1.7' }
-Plug 'cocopon/iceberg.vim'
 Plug 'ajmwagar/vim-deus'
-Plug 'ghifarit53/tokyonight-vim'
-Plug 'jacoborus/tender.vim'
-Plug 'sonph/onehalf', { 'rtp': 'vim' }
-Plug 'drewtempelmeyer/palenight.vim'
-Plug 'elixir-lang/vim-elixir'
-Plug 'godlygeek/tabular'
-Plug 'itchyny/lightline.vim'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all --no-update-rc' }
-Plug 'junegunn/fzf.vim'
-Plug 'pangloss/vim-javascript'
-Plug 'jesseleite/vim-agriculture'
+" Plug 'jacoborus/tender.vim'
+" Plug 'sonph/onehalf', { 'rtp': 'vim' }
+" Plug 'elixir-lang/vim-elixir'
+Plug 'elixir-editors/vim-elixir'
+" Plug 'sheerun/vim-polyglot'
+" Plug 'godlygeek/tabular'
+" Plug 'itchyny/lightline.vim'
+" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all --no-update-rc' }
+" Plug 'junegunn/fzf.vim'
+" Plug 'pangloss/vim-javascript'
+" Plug 'jesseleite/vim-agriculture'
+" Plug 'romgrk/barbar.nvim'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'slashmili/alchemist.vim'
-Plug 'andys8/vim-elm-syntax'
-Plug 'stefandtw/quickfix-reflector.vim'
-Plug 'jiangmiao/auto-pairs'
-Plug 'leafgarland/typescript-vim'
-Plug 'neomake/neomake'
+" Plug 'slashmili/alchemist.vim'
+" Plug 'andys8/vim-elm-syntax'
+" Plug 'stefandtw/quickfix-reflector.vim'
+" Plug 'jiangmiao/auto-pairs'
+" Plug 'leafgarland/typescript-vim'
+" Plug 'neomake/neomake'
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-endwise'
-Plug 'tpope/vim-fugitive'
-Plug 'diepm/vim-rest-console'
-Plug 'tpope/vim-rails'
-Plug 'tpope/vim-repeat'
+" Plug 'tpope/vim-endwise'
+" Plug 'tpope/vim-fugitive'
+" Plug 'diepm/vim-rest-console'
+" Plug 'tpope/vim-rails'
+" Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
-Plug 'vim-ruby/vim-ruby'
+" Plug 'vim-ruby/vim-ruby'
+
 " Plug 'Yggdroot/indentLine'
-Plug 'zhaocai/GoldenView.Vim'
-Plug 'posva/vim-vue'
-Plug 'airblade/vim-gitgutter'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'yuttie/comfortable-motion.vim'
+" Plug 'zhaocai/GoldenView.Vim'
+" Plug 'posva/vim-vue'
+" Plug 'airblade/vim-gitgutter'
+Plug 'lewis6991/gitsigns.nvim'
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+Plug 'hoob3rt/lualine.nvim'
+" Plug 'kristijanhusak/defx-git'
+" Plug 'kristijanhusak/defx-icons'
+" Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
+
+Plug 'neovim/nvim-lspconfig'
+Plug 'tami5/lspsaga.nvim'
+Plug 'folke/lsp-colors.nvim'
+Plug 'L3MON4D3/LuaSnip'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/vim-vsnip'
+Plug 'hrsh7th/cmp-vsnip'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'onsails/lspkind-nvim'
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope-file-browser.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+Plug 'jvgrootveld/telescope-zoxide'
+Plug 'windwp/nvim-autopairs'
+
+" Plug 'yuttie/comfortable-motion.vim'
 Plug 'vimwiki/vimwiki'
 
 call plug#end()
@@ -68,16 +90,16 @@ set lazyredraw
 " COC
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-inoremap <silent><expr> <c-space> coc#refresh()
+" inoremap <silent><expr> <TAB>
+"       \ pumvisible() ? "\<C-n>" :
+"       \ <SID>check_back_space() ? "\<TAB>" :
+"       \ coc#refresh()
+" function! s:check_back_space() abort
+"   let col = col('.') - 1
+"   return !col || getline('.')[col - 1]  =~# '\s'
+" endfunction
+" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+" inoremap <silent><expr> <c-space> coc#refresh()
 
 " Style
 " let g:gruvbox_contrast_dark = 'hard'
@@ -159,96 +181,29 @@ set directory=~/.vim/_temp      " where to put swap files.
 set laststatus=2
 " }}}
 
-" FileType settings {{{
-if has("autocmd")
-  " in Makefiles use real tabs, not tabs expanded to spaces
-  augroup filetype_make
-    au!
-    au FileType make setl ts=8 sts=8 sw=8 noet
-  augroup END
+" File types "{{{
+" ---------------------------------------------------------------------
+" JavaScript
+au BufNewFile,BufRead *.es6 setf javascript
+" TypeScript
+au BufNewFile,BufRead *.tsx setf typescriptreact
+" Markdown
+au BufNewFile,BufRead *.md set filetype=markdown
+au BufNewFile,BufRead *.mdx set filetype=markdown
+" Flow
+au BufNewFile,BufRead *.flow set filetype=javascript
+" Fish
+au BufNewFile,BufRead *.fish set filetype=fish
 
-  " make sure all markdown files have the correct filetype set and setup wrapping
-  augroup filetype_markdown
-    au!
-    au FileType markdown setl tw=80
-    au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn,txt} setf markdown
-  augroup END
+au BufNewFile,BufRead *.heex set filetype=html
 
-  " treat JSON files like JavaScript
-  augroup filetype_json
-    au!
-    au BufNewFile,BufRead *.json setf javascript
-  augroup END
+set suffixesadd=.js,.es,.jsx,.json,.css,.less,.sass,.styl,.php,.py,.md
 
-  " treat JSON files like JavaScript
-  augroup filetype_typescript
-    au!
-    au BufNewFile,BufRead *.ts setf javascript
-  augroup END
+autocmd FileType coffee setlocal shiftwidth=2 tabstop=2
+autocmd FileType ruby setlocal shiftwidth=2 tabstop=2
+autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
 
-  " disable endwise for anonymous functions
-  augroup filetype_elixir_endwise
-    au!
-    au BufNewFile,BufRead *.{ex,exs}
-          \ let b:endwise_addition = '\=submatch(0)=="fn" ? "end)" : "end"'
-  augroup END
-
-  " make Python follow PEP8 ( http://www.python.org/dev/peps/pep-0008/ )
-  augroup filetype_python
-    au!
-    au FileType python setl sts=4 ts=4 sw=4
-  augroup END
-
-  " follow Elm conventions
-  augroup filetype_elm
-    au!
-    au FileType elm setl sts=4 ts=4 sw=4 et
-  augroup END
-
-  " delete Fugitive buffers when they become inactive
-  augroup filetype_fugitive
-    au!
-    au BufReadPost fugitive://* set bufhidden=delete
-  augroup END
-
-  " fold automatically with triple {
-  augroup filetype_vim
-    au!
-    au FileType vim,javascript,python,c setlocal foldmethod=marker nofoldenable
-  augroup END
-
-  " enable <CR> in command line window and quickfix
-  augroup enable_cr
-    au!
-    au CmdwinEnter * nnoremap <buffer> <CR> <CR>
-    au BufWinEnter quickfix nnoremap <buffer> <CR> <CR>
-  augroup END
-
-  " disable automatic comment insertion
-  augroup auto_comments
-    au!
-    au FileType * setlocal formatoptions-=ro
-  augroup END
-
-  " disable numbers in terminal windows
-  augroup terminal_numbers
-    au!
-    autocmd TermOpen * setlocal nonumber norelativenumber
-  augroup END
-
-  " remember last location in file, but not for commit messages,
-  " or when the position is invalid or inside an event handler,
-  " or when the mark is in the first line, that is the default
-  " position when opening a file. See :help last-position-jump
-  augroup last_position
-    au!
-    au BufReadPost *
-      \ if &filetype !~ '^git\c' && line("'\"") > 1 && line("'\"") <= line("$") |
-      \   exe "normal! g`\"" |
-      \ endif
-  augroup END
-endif
-" }}}
+"}}}
 
 " Mappings {{{
 let mapleader=','
@@ -318,34 +273,19 @@ nnoremap <Leader>gb  :Gblame<CR>
 " Plugins mapping
 " nnoremap <Leader>w :ALEDetail<CR>
 " nnoremap <Leader>x :ALENextWrap<CR>
-nnoremap <Leader>f :Files<CR>
-nnoremap <Leader>b :Buffers<CR>
 nnoremap <Leader>m :History<CR>
 nnoremap <silent> <S-left> <Esc>:bp<CR>
 nnoremap <silent> <S-right> <Esc>:bn<CR>
-nnoremap <Leader>a <Esc>:AgRaw<space>
 nnoremap <Leader>n :NERDTreeToggle<CR>
 nnoremap <Leader>t :wa<CR>\|:TestFile<CR>
 nnoremap <Leader>T :wa<CR>\|:TestNearest<CR>
 
-
-" Keybindings
-nmap <leader>r <Plug>(coc-rename)
-nmap <silent> <leader>s <Plug>(coc-fix-current)
-nmap <silent> <leader>S <Plug>(coc-codeaction)
-" nmap <silent> <leader>a <Plug>(coc-diagnostic-next)
-" nmap <silent> <leader>A <Plug>(coc-diagnostic-next-error)
-nmap <silent> <leader>d <Plug>(coc-definition)
-nmap <silent> <leader>g :call CocAction('doHover')<CR>
-nmap <silent> <leader>u <Plug>(coc-references)
-nmap <silent> <leader>p :call CocActionAsync('format')<CR>
 
 " }}
 
 " Plugins configuration {{{
 let g:NERDTreeHighlightCursorline = 0
 let g:NERDTreeMouseMode = 3
-let g:elixir_use_markdown_for_docs = 1
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 let g:fzf_layout = { 'down': '~30%' }
@@ -377,8 +317,8 @@ if (has("termguicolors"))
 endif
 
 
-let g:neomake_elixir_enabled_makers = ['credo']
-autocmd! BufWritePost * Neomake
+"let g:neomake_elixir_enabled_makers = ['credo']
+"autocmd! BufWritePost * Neomake
 
 command! -bang -nargs=* Ag
   \ call fzf#vim#ag(<q-args>,
