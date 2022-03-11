@@ -302,6 +302,9 @@ let g:test#strategy = "vimux"
 let g:yankring_clipboard_monitor = 0
 let g:yankring_history_dir = '$HOME/.vim'
 let g:UltiSnipsSnippetsDir = '$HOME/.vim/UltiSnips'
+
+let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'javascript', 'c']
+
 " }}}
 
 if (has("nvim"))
