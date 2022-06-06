@@ -3,6 +3,7 @@ if !exists('g:loaded_telescope') | finish | endif
 nnoremap  <Leader>f <cmd>lua require('telescope.builtin').find_files()<cr>
 " nnoremap <Leader>f :Telescope find_files<CR>
 nnoremap <Leader>a <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap <Leader>gs <cmd>lua require('telescope.builtin').git_status()<cr>
 nnoremap <Leader>s <cmd>lua require('telescope.builtin').lsp_document_symbols()<cr>
 " nnoremap <Leader>a <Esc>:Telescope live_grep<space>
 nnoremap <Leader>b <cmd>lua require 'telescope'.extensions.file_browser.file_browser()<cr>

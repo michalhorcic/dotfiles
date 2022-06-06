@@ -1,5 +1,7 @@
 if !exists('#LspColors') | finish | endif
 
+" lua require'colorizer'.setup()
+
 lua << EOF
 require("lsp-colors").setup({
   Error = "#db4b4b",

@@ -1,44 +1,18 @@
 "ns {{{
 call plug#begin('~/.vim/plugged')
 
-" Plug 'nathanaelkane/vim-indent-guides'
 Plug 'morhetz/gruvbox'
 Plug 'ajmwagar/vim-deus'
-" Plug 'jacoborus/tender.vim'
-" Plug 'sonph/onehalf', { 'rtp': 'vim' }
-" Plug 'elixir-lang/vim-elixir'
-Plug 'elixir-editors/vim-elixir'
-" Plug 'sheerun/vim-polyglot'
-" Plug 'godlygeek/tabular'
-" Plug 'itchyny/lightline.vim'
-" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all --no-update-rc' }
-" Plug 'junegunn/fzf.vim'
-" Plug 'pangloss/vim-javascript'
-" Plug 'jesseleite/vim-agriculture'
-" Plug 'romgrk/barbar.nvim'
+Plug 'catppuccin/nvim', {'as': 'catppuccin'}
+Plug 'mhartington/oceanic-next'
+Plug 'drewtempelmeyer/palenight.vim'
+Plug 'norcalli/nvim-colorizer.lua'
+Plug 'chrisbra/Colorizer'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-" Plug 'slashmili/alchemist.vim'
-" Plug 'andys8/vim-elm-syntax'
-" Plug 'stefandtw/quickfix-reflector.vim'
-" Plug 'jiangmiao/auto-pairs'
-" Plug 'leafgarland/typescript-vim'
-" Plug 'neomake/neomake'
 Plug 'tpope/vim-commentary'
-" Plug 'tpope/vim-endwise'
-" Plug 'tpope/vim-fugitive'
-" Plug 'diepm/vim-rest-console'
-" Plug 'tpope/vim-rails'
-" Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
-" Plug 'vim-ruby/vim-ruby'
-
-" Plug 'Yggdroot/indentLine'
-" Plug 'zhaocai/GoldenView.Vim'
-" Plug 'posva/vim-vue'
-" Plug 'airblade/vim-gitgutter'
 Plug 'lewis6991/gitsigns.nvim'
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'hoob3rt/lualine.nvim'
 " Plug 'kristijanhusak/defx-git'
@@ -46,6 +20,11 @@ Plug 'hoob3rt/lualine.nvim'
 " Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
 
 Plug 'neovim/nvim-lspconfig'
+Plug 'jose-elias-alvarez/null-ls.nvim'
+Plug 'MunifTanjim/prettier.nvim'
+
+Plug 'David-Kunz/jester'
+
 Plug 'tami5/lspsaga.nvim'
 Plug 'folke/lsp-colors.nvim'
 Plug 'L3MON4D3/LuaSnip'
@@ -65,7 +44,6 @@ Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'jvgrootveld/telescope-zoxide'
 Plug 'windwp/nvim-autopairs'
 
-" Plug 'yuttie/comfortable-motion.vim'
 Plug 'vimwiki/vimwiki'
 
 call plug#end()
@@ -87,20 +65,6 @@ set noswapfile                    " and swap files
 set updatetime=100
 set lazyredraw
 
-" COC
-" Use tab for trigger completion with characters ahead and navigate.
-" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-" inoremap <silent><expr> <TAB>
-"       \ pumvisible() ? "\<C-n>" :
-"       \ <SID>check_back_space() ? "\<TAB>" :
-"       \ coc#refresh()
-" function! s:check_back_space() abort
-"   let col = col('.') - 1
-"   return !col || getline('.')[col - 1]  =~# '\s'
-" endfunction
-" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-" inoremap <silent><expr> <c-space> coc#refresh()
-
 " Style
 " let g:gruvbox_contrast_dark = 'hard'
 " set background=dark
@@ -115,8 +79,16 @@ let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
 set background=dark    " Setting dark mode
-colorscheme deus
+colorscheme palenight
+" let g:catppuccin_flavour = "dusk" " latte, frappe, macchiato, mocha
+" colorscheme catppuccin
+
+let g:palenight_terminal_italics=1
+" colorscheme oceanicnext
 let g:deus_termcolors=256
+
+
+let g:colorizer_auto_filetype='css,html,md,markdown'
 
 " color gruvbox
 " colorscheme afterglow
@@ -195,6 +167,8 @@ au BufNewFile,BufRead *.flow set filetype=javascript
 " Fish
 au BufNewFile,BufRead *.fish set filetype=fish
 
+au BufNewFile,BufRead *.cpon set filetype=cpon
+
 au BufNewFile,BufRead *.heex set filetype=html
 
 set suffixesadd=.js,.es,.jsx,.json,.css,.less,.sass,.styl,.php,.py,.md
@@ -202,6 +176,17 @@ set suffixesadd=.js,.es,.jsx,.json,.css,.less,.sass,.styl,.php,.py,.md
 autocmd FileType coffee setlocal shiftwidth=2 tabstop=2
 autocmd FileType ruby setlocal shiftwidth=2 tabstop=2
 autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
+
+autocmd FileType json setlocal makeprg=python3\ -mjson.tool\ 2>&1\ %\ >\ /dev/null
+                     \| setlocal errorformat=%m:\ line\ %l\ column\ %c\ %.%#
+
+" function! PrettyJSON()
+"   silent %!python3 -mjson.tool | sed -e 's/\s*$//'
+" endfunction
+
+" command! Fjson call PrettyJSON()
+
+autocmd BufWritePre *.tsx,*.ts,*.jsx,*.js EslintFixAll
 
 "}}}
 
@@ -277,8 +262,13 @@ nnoremap <Leader>m :History<CR>
 nnoremap <silent> <S-left> <Esc>:bp<CR>
 nnoremap <silent> <S-right> <Esc>:bn<CR>
 nnoremap <Leader>n :NERDTreeToggle<CR>
-nnoremap <Leader>t :wa<CR>\|:TestFile<CR>
-nnoremap <Leader>T :wa<CR>\|:TestNearest<CR>
+
+nnoremap <Leader>t :lua require("jester").run()<CR>
+" nnoremap <Leader>jf :%python3 -m "json.tool"<CR>
+nnoremap <Leader>jf :set ft=json<cr>:%!python3 -m json.tool<cr>gg=G<cr>
+
+" nnoremap <Leader>t :wa<CR>\|:TestFile<CR>
+" nnoremap <Leader>T :wa<CR>\|:TestNearest<CR>
 
 
 " }}
@@ -288,14 +278,15 @@ let g:NERDTreeHighlightCursorline = 0
 let g:NERDTreeMouseMode = 3
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
-let g:fzf_layout = { 'down': '~30%' }
-let g:goldenview__enable_default_mapping = 0
+" let g:fzf_layout = { 'down': '~30%' }
+" let g:goldenview__enable_default_mapping = 0
 let g:html_indent_inctags = "html,body,head,tbody"
 let g:html_indent_script1 = "inc"
 let g:html_indent_style1 = "inc"
 " let g:lightline = { 'mode_fallback': { 'terminal': 'normal' } }
-let g:lightline = { 'colorscheme': 'deus' }
-let g:loaded_python3_provider = 1
+let g:lightline = { 'colorscheme': 'palenight' }
+" let g:loaded_python3_provider = 1
+let g:python3_host_prog = '/opt/homebrew/bin/python3'
 let g:ruby_indent_access_modifier_style = 'normal'
 let g:test#preserve_screen = 1
 let g:test#strategy = "vimux"
@@ -323,9 +314,9 @@ endif
 "let g:neomake_elixir_enabled_makers = ['credo']
 "autocmd! BufWritePost * Neomake
 
-command! -bang -nargs=* Ag
-  \ call fzf#vim#ag(<q-args>,
-  \                 <bang>0 ? fzf#vim#with_preview({ 'options': '--bind ctrl-a:select-all,ctrl-d:deselect-all' }, 'up:60%')
-  \                         : fzf#vim#with_preview({ 'options': '--bind ctrl-a:select-all,ctrl-d:deselect-all' }, 'right:50%:hidden', '?'),
-  \                 <bang>0)
+" command! -bang -nargs=* Ag
+"   \ call fzf#vim#ag(<q-args>,
+"   \                 <bang>0 ? fzf#vim#with_preview({ 'options': '--bind ctrl-a:select-all,ctrl-d:deselect-all' }, 'up:60%')
+"   \                         : fzf#vim#with_preview({ 'options': '--bind ctrl-a:select-all,ctrl-d:deselect-all' }, 'right:50%:hidden', '?'),
+"   \                 <bang>0)
 let g:gitgutter_terminal_reports_focus=0

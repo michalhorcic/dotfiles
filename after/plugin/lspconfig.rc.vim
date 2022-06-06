@@ -100,66 +100,7 @@ nvim_lsp.tsserver.setup {
   capabilities = capabilities
 }
 
-nvim_lsp.diagnosticls.setup {
-  on_attach = on_attach,
-  filetypes = { 'javascript', 'javascriptreact', 'json', 'typescript', 'typescriptreact', 'css', 'less', 'scss', 'markdown', 'pandoc' },
-  init_options = {
-    linters = {
-      eslint = {
-        command = 'eslint_d',
-        rootPatterns = { '.git' },
-        debounce = 100,
-        args = { '--stdin', '--stdin-filename', '%filepath', '--format', 'json' },
-        sourceName = 'eslint_d',
-        parseJson = {
-          errorsRoot = '[0].messages',
-          line = 'line',
-          column = 'column',
-          endLine = 'endLine',
-          endColumn = 'endColumn',
-          message = '[eslint] ${message} [${ruleId}]',
-          security = 'severity'
-        },
-        securities = {
-          [2] = 'error',
-          [1] = 'warning'
-        }
-      },
-    },
-    filetypes = {
-      javascript = 'eslint',
-      javascriptreact = 'eslint',
-      typescript = 'eslint',
-      typescriptreact = 'eslint',
-    },
-    formatters = {
-      eslint_d = {
-        command = 'eslint_d',
-        rootPatterns = { '.git' },
-        args = { '--stdin', '--stdin-filename', '%filename', '--fix-to-stdout' },
-        rootPatterns = { '.git' },
-      },
-      prettier = {
-        command = 'prettier_d_slim',
-        rootPatterns = { '.git' },
-        -- requiredFiles: { 'prettier.config.js' },
-        args = { '--stdin', '--stdin-filepath', '%filename' }
-      }
-    },
-    formatFiletypes = {
-      css = 'prettier',
-      javascript = 'prettier',
-      javascriptreact = 'prettier',
-      json = 'prettier',
-      scss = 'prettier',
-      less = 'prettier',
-      typescript = 'prettier',
-      typescriptreact = 'prettier',
-      json = 'prettier',
-      markdown = 'prettier',
-    }
-  }
-}
+nvim_lsp.eslint.setup{}
 
 -- icon
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
@@ -198,6 +139,59 @@ nvim_lsp.efm.setup({
 })
 
 nvim_lsp.vuels.setup{}
+
+local null_ls = require("null-ls")
+local prettier = require("prettier")
+
+null_ls.setup({
+  on_attach = function(client, bufnr)
+    if client.resolved_capabilities.document_formatting then
+      -- vim.cmd("nnoremap <silent><buffer> <Leader>f :lua vim.lsp.buf.formatting()<CR>")
+      -- format on save
+      vim.cmd("autocmd BufWritePost <buffer> lua vim.lsp.buf.formatting()")
+    end
+
+    if client.resolved_capabilities.document_range_formatting then
+      vim.cmd("xnoremap <silent><buffer> <Leader>f :lua vim.lsp.buf.range_formatting({})<CR>")
+    end
+  end,
+})
+
+prettier.setup({
+  bin = 'prettier', -- or `prettierd`
+  filetypes = {
+    "css",
+    "graphql",
+    "html",
+    "javascript",
+    "javascriptreact",
+    "json",
+    "less",
+    "markdown",
+    "scss",
+    "typescript",
+    "typescriptreact",
+    "yaml",
+  },
+
+  -- prettier format options (you can use config files too. ex: `.prettierrc`)
+  arrow_parens = "always",
+  bracket_spacing = true,
+  embedded_language_formatting = "auto",
+  end_of_line = "lf",
+  html_whitespace_sensitivity = "css",
+  jsx_bracket_same_line = false,
+  jsx_single_quote = false,
+  print_width = 80,
+  prose_wrap = "preserve",
+  quote_props = "as-needed",
+  semi = true,
+  single_quote = false,
+  tab_width = 2,
+  trailing_comma = "es5",
+  use_tabs = false,
+  vue_indent_script_and_style = false,
+})
 
 EOF
 

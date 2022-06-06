@@ -18,7 +18,7 @@ export ZSH="/Users/michalhorcic/.oh-my-zsh"
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
-# POWERLEVEL9K_MODE='nerdfont-complete'
+POWERLEVEL9K_MODE='nerdfont-complete'
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 POWERLEVEL9K_DISABLE_GITSTATUS=true
 
@@ -144,9 +144,9 @@ robco="ROBCO INDUSTRIES OPERATING SYSTEM"
 copy="COPYRIGHT 2075-2077 ROBCO INDUSTRIES"
 printf "%*s\n" $(((${#robco}+$COLUMNS)/2)) "$robco"
 printf "%*s\n" $(((${#copy}+$COLUMNS)/2)) "$copy"
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-fi
+# if command -v pyenv 1>/dev/null 2>&1; then
+#   eval "$(pyenv init -)"
+# fi
 
 #
 # Run 'nvm use' automatically every time there's 
@@ -176,3 +176,12 @@ load-nvmrc
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+export PATH="/opt/homebrew/opt/openjdk@11/bin:$PATH"
+export PATH="/opt/homebrew/opt/openjdk@11/bin:$PATH"
+export PATH="/Users/michalhorcic/.pyenv/shims/python:$PATH"
+alias python="python3"
+# eval "$(starship init zsh)"
