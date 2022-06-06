@@ -11,7 +11,7 @@ fi
 # export TERM="xterm-256color"
 #export PATH=/Users/mousse/Library/Python/3.7/bin
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/michalhorcic/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -157,9 +157,9 @@ printf "%*s\n" $(((${#copy}+$COLUMNS)/2)) "$copy"
 export NVM_DIR=~/.nvm
  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 
-eval "$(rbenv init -)"
+# eval "$(rbenv init -)"
 
-eval "$(zoxide init zsh)"
+# eval "$(zoxide init zsh)"
 
 # place this after nvm initialization!
 autoload -U add-zsh-hook
