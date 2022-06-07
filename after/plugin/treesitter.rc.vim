@@ -21,6 +21,7 @@ require'nvim-treesitter.configs'.setup {
     "json",
     "yaml",
     "heex",
+    "elixir",
     "swift",
     "html",
     "scss"
