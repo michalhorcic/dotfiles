@@ -74,7 +74,7 @@ POWERLEVEL9K_DISABLE_GITSTATUS=true
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git, zsh-syntax-highlightling, asdf)
+plugins=(asdf)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -85,10 +85,10 @@ export LANG=en_GB.UTF-8
 export LC_ALL=en_GB.UTF-8
 export LC_CTYPE=en_GB.UTF-8
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
-PATH="$HOME/.node_modules/bin:$PATH"
+# PATH="$HOME/.node_modules/bin:$PATH"
 # export npm_config_prefix=~/.node_modules
 
 export PATH=/usr/local/sbin:$PATH
