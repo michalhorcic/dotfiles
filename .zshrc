@@ -151,34 +151,34 @@ printf "%*s\n" $(((${#copy}+$COLUMNS)/2)) "$copy"
 # version when entering a directory without .nvmrc
 #
 
-export NVM_DIR=~/.nvm
- [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+# export NVM_DIR=~/.nvm
+#  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 
 # eval "$(rbenv init -)"
 
 # eval "$(zoxide init zsh)"
 
 # place this after nvm initialization!
-autoload -U add-zsh-hook
-load-nvmrc() {
-  if [[ -f .nvmrc && -r .nvmrc ]]; then
-    nvm use
-  elif [[ $(nvm version) != $(nvm version default)  ]]; then
-    echo "Reverting to nvm default version"
-    nvm use default
-  fi
-}
-add-zsh-hook chpwd load-nvmrc
-load-nvmrc
+# autoload -U add-zsh-hook
+# load-nvmrc() {
+#   if [[ -f .nvmrc && -r .nvmrc ]]; then
+#     nvm use
+#   elif [[ $(nvm version) != $(nvm version default)  ]]; then
+#     echo "Reverting to nvm default version"
+#     nvm use default
+#   fi
+# }
+# add-zsh-hook chpwd load-nvmrc
+# load-nvmrc
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-export PATH="/opt/homebrew/opt/openjdk@11/bin:$PATH"
-export PATH="/opt/homebrew/opt/openjdk@11/bin:$PATH"
-export PATH="/Users/michalhorcic/.pyenv/shims/python:$PATH"
-alias python="python3"
+# export SDKMAN_DIR="$HOME/.sdkman"
+# [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+# export PATH="/opt/homebrew/opt/openjdk@11/bin:$PATH"
+# export PATH="/opt/homebrew/opt/openjdk@11/bin:$PATH"
+# export PATH="/Users/michalhorcic/.pyenv/shims/python:$PATH"
+# alias python="python3"
 # eval "$(starship init zsh)"
