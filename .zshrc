@@ -100,6 +100,7 @@ export PATH=/opt/homebrew/sbin:$PATH
 export PATH=$HOME/.rbenv/shims:$PATH
 export PATH=$HOME/.rbenv/bin:$PATH
 export PATH=$HOME/.asdf/bin:$PATH
+export PATH=$HOME/.local/bin:$PATH
 alias sdf="df -h"
 alias ls="ls -lt"
 alias gst="git status"
