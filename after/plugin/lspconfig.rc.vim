@@ -115,7 +115,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 )
 
 nvim_lsp.elixirls.setup {
-    cmd = { "~/.local/share/nvim/lsp_servers/elixirls" };
+    cmd = { "~/.local/share/nvim/lsp_servers/elixir" };
     capabilities = capabilities,
     on_attach = on_attach,
     settings = {
