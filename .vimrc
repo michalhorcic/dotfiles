@@ -19,6 +19,8 @@ Plug 'hoob3rt/lualine.nvim'
 " Plug 'kristijanhusak/defx-icons'
 " Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
 
+Plug "williamboman/nvim-lsp-installer"
+
 Plug 'neovim/nvim-lspconfig'
 Plug 'jose-elias-alvarez/null-ls.nvim'
 Plug 'MunifTanjim/prettier.nvim'
