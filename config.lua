@@ -12,6 +12,8 @@ an executable
 lvim.log.level = "warn"
 lvim.format_on_save = true
 lvim.colorscheme = "onedarker"
+vim.opt.relativenumber = true
+
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
 
@@ -21,12 +23,12 @@ lvim.leader = "space"
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 
 require("lvim.lsp.manager").setup("elixirls", {
-    settings = {
-      elixirLS = {
-        dialyzerEnabled = false,
-        fetchDeps = false
-      }
+  settings = {
+    elixirLS = {
+      dialyzerEnabled = false,
+      fetchDeps = false
     }
+  }
 })
 
 -- unmap a default keymapping
@@ -154,13 +156,14 @@ lvim.builtin.treesitter.highlight.enabled = true
 -- }
 
 -- Additional Plugins
--- lvim.plugins = {
---     {"folke/tokyonight.nvim"},
---     {
---       "folke/trouble.nvim",
---       cmd = "TroubleToggle",
---     },
--- }
+lvim.plugins = {
+  { "folke/tokyonight.nvim" },
+  { "rebelot/kanagawa.nvim" }
+  -- {
+  --   "folke/trouble.nvim",
+  --   cmd = "TroubleToggle",
+  -- },
+}
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 -- vim.api.nvim_create_autocmd("BufEnter", {
