@@ -186,4 +186,6 @@ printf "%*s\n" $(((${#copy}+$COLUMNS)/2)) "$copy"
 # export PATH="/opt/homebrew/opt/openjdk@11/bin:$PATH"
 # export PATH="/Users/michalhorcic/.pyenv/shims/python:$PATH"
 # alias python="python3"
+
 # eval "$(starship init zsh)"
+. $HOME/.asdf/asdf.sh
