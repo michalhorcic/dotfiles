@@ -7,11 +7,10 @@ a global executable or a path to
 an executable
 ]]
 -- THESE ARE EXAMPLE CONFIGS FEEL FREE TO CHANGE TO WHATEVER YOU WANT
-
 -- general
 lvim.log.level = "warn"
-lvim.format_on_save = true
-lvim.colorscheme = "onedarker"
+lvim.format_on_save = false
+lvim.colorscheme = "system76"
 vim.opt.relativenumber = true
 
 -- to disable icons and use a minimalist setup, uncomment the following
@@ -155,10 +154,143 @@ lvim.builtin.treesitter.highlight.enabled = true
 --   },
 -- }
 
+-- local sources = { require "lvim.lsp.null-ls.builtins.diagnostics.standardjs" }
+
+
+
+local formatters = require "lvim.lsp.null-ls.formatters"
+formatters.setup {
+  { command = "black" },
+  {
+    command = "standardjs",
+    filetypes = { "javascript" },
+  },
+}
+
+local linters = require "lvim.lsp.null-ls.linters"
+linters.setup {
+  {
+    exe = "standardjs",
+    filetypes = {
+      "javascript"
+    }
+  }
+}
+
+formatters.setup {
+  { command = "black" },
+  {
+    command = "eslint_d",
+    filetypes = { "vue", "typescript" },
+  },
+}
+
+linters.setup {
+  {
+    exe = "eslint_d",
+    filetypes = {
+      "vue",
+      "typescript"
+    }
+  }
+}
+
+lvim.builtin.treesitter.rainbow.enable = true
+
+-- -- require("lvim.lsp.manager").setup("eslint_d", {
+-- --   filetypes = { "html", "vue", "typescriptreact", "javascriptreact" }
+-- -- })
+
+-- local code_actions = require "lvim.lsp.null-ls.code_actions"
+-- code_actions.setup {
+--   {
+--     exe = "standardjs",
+--     filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
+--   },
+-- }
+
 -- Additional Plugins
 lvim.plugins = {
+  {"lunarvim/colorschemes"},
   { "folke/tokyonight.nvim" },
-  { "rebelot/kanagawa.nvim" }
+  { "rebelot/kanagawa.nvim" },
+  {
+    "windwp/nvim-ts-autotag",
+    config = function()
+      require("nvim-ts-autotag").setup()
+    end,
+  },
+  -- {
+  --   "romgrk/nvim-treesitter-context",
+  --   config = function()
+  --     require("treesitter-context").setup{
+  --       enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
+  --       throttle = true, -- Throttles plugin updates (may improve performance)
+  --       max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
+  --       patterns = { -- Match patterns for TS nodes. These get wrapped to match at word boundaries.
+  --         -- For all filetypes
+  --         -- Note that setting an entry here replaces all other patterns for this entry.
+  --         -- By setting the 'default' entry below, you can control which nodes you want to
+  --         -- appear in the context window.
+  --         default = {
+  --           'class',
+  --           'function',
+  --           'method',
+  --         },
+  --       },
+  --     }
+  --   end
+  -- },
+  {
+    "rmagatti/goto-preview",
+    config = function()
+    require('goto-preview').setup {
+          width = 120; -- Width of the floating window
+          height = 25; -- Height of the floating window
+          default_mappings = false; -- Bind default mappings
+          debug = false; -- Print debug information
+          opacity = nil; -- 0-100 opacity level of the floating window where 100 is fully transparent.
+          post_open_hook = nil -- A function taking two arguments, a buffer and a window to be ran as a hook.
+          -- You can use "default_mappings = true" setup option
+          -- Or explicitly set keybindings
+          -- vim.cmd("nnoremap gpd <cmd>lua require('goto-preview').goto_preview_definition()<CR>")
+          -- vim.cmd("nnoremap gpi <cmd>lua require('goto-preview').goto_preview_implementation()<CR>")
+          -- vim.cmd("nnoremap gP <cmd>lua require('goto-preview').close_all_win()<CR>")
+      }
+    end
+  },
+  {
+    "p00f/nvim-ts-rainbow",
+  },
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    event = "BufRead",
+    config = function()
+      local opts = {
+        char = "▏",
+        filetype_exclude = {
+          "alpha",
+          "help",
+          "terminal",
+          "dashboard",
+          "lspinfo",
+          "lsp-installer",
+          "mason",
+        },
+        space_char_blankline = " ",
+        show_current_context = true,
+        show_current_context_start = true,
+        buftype_exclude = { "terminal" },
+        bufname_exclude = { "config.lua" },
+
+        show_trailing_blankline_indent = false,
+        show_first_indent_level = false,
+        -- use_treesitter = false,
+      }
+
+      require("indent_blankline").setup(opts)
+    end
+  },
   -- {
   --   "folke/trouble.nvim",
   --   cmd = "TroubleToggle",
